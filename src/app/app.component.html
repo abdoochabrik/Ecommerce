@@ -23,13 +23,15 @@
 <div class="container">
    <div class="col-md-3">
      <ul class="list-group" *ngIf="categories" >
-      <li *ngFor="let c of categories._embedded.categories" >
+      <li class="list-group-item" *ngFor="let c of categories._embedded.categories" >
         {{c.name}}
       </li>
      </ul>
    </div>
 
    <div class="col-md-9">
-
+      <router-outlet>
+        
+      </router-outlet>
    </div>
 </div>
