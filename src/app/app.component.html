@@ -24,7 +24,9 @@
    <div class="col-md-3">
      <ul class="list-group" *ngIf="categories" >
       <li class="list-group-item" *ngFor="let c of categories._embedded.categories" >
+        <a (click)="getProductsByCat(c)" >
         {{c.name}}
+        </a>
       </li>
      </ul>
    </div>

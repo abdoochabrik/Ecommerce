@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CatalogueService } from '../catalogue.service';
 
 @Component({
@@ -10,14 +11,22 @@ export class ProductsComponent implements OnInit {
 
   public products:any;
 
-  constructor(private catService:CatalogueService ) { }
+  constructor(public catService:CatalogueService, private route:ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.getProducts()
+    let pathparams1 = this.route.snapshot.params.p1
+    
+    if(pathparams1 == 1) {
+    this.getProducts("/products/search/selectedProduct")
+    }
+    else if (pathparams1 == 2) {
+      let pathparams2 = this.route.snapshot.params.p2
+      this.getProducts('/categories/'+pathparams2+'/products')
+    }
   }
 
-  private getProducts() {
-    this.catService.getRessource("/products/search/selectedProduct")
+  private getProducts(url:any) {
+    this.catService.getRessource(url)
     .subscribe(data=>{
       console.log('data', data)
       this.products = data
