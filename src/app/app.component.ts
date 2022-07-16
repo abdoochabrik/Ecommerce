@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   public categories:any;
+  private currentCategory:any
+
+  public getCurrentCategory() {
+    return this.currentCategory;
+   }
 
   constructor(private catService:CatalogueService, private router:Router) { 
   }
@@ -29,6 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   getProductsByCat(c:any) {
+    this.currentCategory = c;    
     this.router.navigateByUrl('/products/2/'+c.id);
   }
 }
